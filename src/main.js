@@ -18,12 +18,12 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const params = {
-	red: 0.3,
-	green: 0.1,
-	blue: 0.8,
+	red: 1.0,
+	green: 1.0,
+	blue: 1.0,
 	threshold: 0.5,
 	strength: 0.5,
-	radius: 0.8
+	radius: 1.0
 }
 
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -31,9 +31,9 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 const renderScene = new RenderPass(scene, camera);
 
 const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight));
-bloomPass.threshold = params.threshold;
-bloomPass.strength = params.strength;
-bloomPass.radius = params.radius;
+bloomPass.threshold =  0.16;
+bloomPass.strength = 0.5;
+bloomPass.radius = 1.0;
 
 const bloomComposer = new EffectComposer(renderer);
 bloomComposer.addPass(renderScene);
@@ -48,9 +48,9 @@ camera.lookAt(0, 0, 0);
 const uniforms = {
 	u_time: {type: 'f', value: 0.0},
 	u_frequency: {type: 'f', value: 0.0},
-	u_red: {type: 'f', value: 1.0},
-	u_green: {type: 'f', value: 1.0},
-	u_blue: {type: 'f', value: 1.0}
+	u_red: {type: 'f', value: 0.3},
+	u_green: {type: 'f', value: 0.1},
+	u_blue: {type: 'f', value: 0.8}
 }
 
 const mat = new THREE.ShaderMaterial({
