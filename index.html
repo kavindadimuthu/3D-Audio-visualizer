@@ -49,22 +49,39 @@
         color: white;
         z-index: 1;
       }
-      .created-by {
+      .version {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: 2vh;
+        right: 2vw;
         color: white;
         font-size: small;
         z-index: 1;
       }
-      .created-by a {
-        color: white;
-      }
       canvas {
         display: block;
+        width: 100vw;
       }
+      @media (max-width: 600px) {
+      #controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      #uploadLabel {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      .version {
+        font-size: x-small;
+      }
+    }
   </style>
-  <script type="module" crossorigin src="/3D-Audio-visualizer/assets/index-C-zW4tq8.js"></script>
+  <script type="module" crossorigin src="/3D-Audio-visualizer/assets/index--3gmIH0V.js"></script>
 </head>
 
 <body>
@@ -76,7 +93,7 @@
   </div>
 
   <h1>Audio Visualizer</h1>
-  <div class="created-by">v1.0 <br> Created by <i><a href="https://github.com/kavindadimuthu">kava</a></i></div>
+  <div class="version">v1.0</div>
 
   <script id="vertexshader" type="vertex">
       uniform float u_time;
