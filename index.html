@@ -40,6 +40,28 @@
     #uploadLabel:hover {
       background-color: #0056b3;
     }
+
+    h1 {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        z-index: 1;
+      }
+      .created-by {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: white;
+        z-index: 1;
+      }
+      .created-by a {
+        color: white;
+      }
+      canvas {
+        display: block;
+      }
   </style>
   <script type="module" crossorigin src="/3D-Audio-visualizer/assets/index-C-zW4tq8.js"></script>
 </head>
@@ -51,6 +73,10 @@
     <label for="volumeControl">Volume</label>
     <input type="range" name="volumeControl" id="volumeControl" min="0" max="1" step="0.01" value="1">
   </div>
+
+  <h1>Audio Visualizer</h1>
+  <div class="created-by">Created by <i><a href="https://github.com/kavindadimuthu">Kavinda Dimuthu</a></i></div>
+
   <script id="vertexshader" type="vertex">
       uniform float u_time;
 
