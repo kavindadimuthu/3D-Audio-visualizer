@@ -9,6 +9,7 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
 	45,
@@ -21,7 +22,7 @@ const params = {
 	red: 1.0,
 	green: 1.0,
 	blue: 1.0,
-	threshold: 0.5,
+	threshold: 0.15,
 	strength: 0.5,
 	radius: 1.0
 }
@@ -31,8 +32,8 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 const renderScene = new RenderPass(scene, camera);
 
 const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight));
-bloomPass.threshold =  0.16;
-bloomPass.strength = 0.5;
+bloomPass.threshold =  0.15;
+bloomPass.strength = 0.35;
 bloomPass.radius = 1.0;
 
 const bloomComposer = new EffectComposer(renderer);
@@ -59,10 +60,25 @@ const mat = new THREE.ShaderMaterial({
 	fragmentShader: document.getElementById('fragmentshader').textContent
 });
 
-const geo = new THREE.IcosahedronGeometry(4, 30 );
-const mesh = new THREE.Mesh(geo, mat);
-scene.add(mesh);
-mesh.material.wireframe = true;
+// const geo = new THREE.IcosahedronGeometry(4, 30 );
+let geo;
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+
+function updateGeoRadius(windowWidth, windowHeight) {
+  const radius = Math.min(windowWidth, windowHeight) / 200; // Adjust the divisor as needed
+  const detail = Math.floor(radius*8);
+  console.log(radius, detail);
+  geo = new THREE.IcosahedronGeometry(radius, detail);
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+  mesh.material.wireframe = true;
+
+}
+
+// Call the function initially and whenever the canvas size changes
+updateGeoRadius(windowWidth, windowHeight);
+
 
 const listener = new THREE.AudioListener();
 camera.add(listener);
@@ -162,7 +178,10 @@ function animate() {
 }
 animate();
 
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function(updateGeoRadius) {
+	let windowWidth = window.innerWidth
+	let windowHeight = window.innerHeight
+	updateGeoRadius(windowWidth, windowHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
