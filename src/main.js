@@ -49,9 +49,9 @@ camera.lookAt(0, 0, 0);
 const uniforms = {
 	u_time: {type: 'f', value: 0.0},
 	u_frequency: {type: 'f', value: 0.0},
-	u_red: {type: 'f', value: 0.3},
-	u_green: {type: 'f', value: 0.1},
-	u_blue: {type: 'f', value: 0.8}
+	u_red: {type: 'f', value: 0.25},
+	u_green: {type: 'f', value: 0.0},
+	u_blue: {type: 'f', value: 0.9}
 }
 
 const mat = new THREE.ShaderMaterial({
