@@ -18,9 +18,9 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const params = {
-	red: 1.0,
-	green: 1.0,
-	blue: 1.0,
+	red: 0.3,
+	green: 0.1,
+	blue: 0.8,
 	threshold: 0.5,
 	strength: 0.5,
 	radius: 0.8
